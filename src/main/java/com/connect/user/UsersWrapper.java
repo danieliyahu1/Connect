@@ -23,8 +23,12 @@ public class UsersWrapper {
 
     private void build()
     {
-        this.createUser("Eliyahu", "Stutaw", "1@gmail.com");
-        this.createUser("Son", "Goku", "z@gmail.com");
+        this.createUser("Luffy", "Monkey D", "luffy@gmail.com");
+        this.createUser("Zoro", "Roronoa", "zoro@gmail.com");
+        this.createUser("Sanji", "Vinsmoke", "sanji@gmail.com");
+        this.createUser("Robin", "Nico", "robin@gmail.com");
+        this.createUser("Ace", "Portgas D", "ace@gmail.com");
+        this.createUser("Oden", "Kozuki", "oden@gmail.com");
     }
 
     private void createUser(String firstName, String lastName, String email)
