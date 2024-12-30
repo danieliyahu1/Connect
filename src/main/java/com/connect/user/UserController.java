@@ -1,5 +1,6 @@
 package com.connect.user;
 
+import com.connect.exception.UserNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,13 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable int id)
     {
-        return userService.getUserById(id);
+        try{
+            return userService.getUserById(id);
+        }
+        catch(Error e)
+        {
+            throw new UserNotFoundException("User not found, can not get user");
+        }
     }
 
     @PostMapping("users")
@@ -37,12 +44,24 @@ public class UserController {
 
     @PutMapping("users/{id}")
     public User editUser(@Valid @RequestBody User user, @PathVariable int id) throws InvocationTargetException, IllegalAccessException {
-        return userService.editUser(user, id);
+        try{
+            return userService.editUser(user, id);
+        }
+        catch(Error e)
+        {
+            throw new UserNotFoundException("User not found, can not edit user");
+        }
     }
 
     @DeleteMapping("users/{id}")
     public User deleteUser(@PathVariable int id)
     {
-        return userService.deleteUser(id);
+        try{
+            return userService.deleteUser(id);
+        }
+        catch(Error e)
+        {
+            throw new UserNotFoundException("User not found, can not delete user");
+        }
     }
 }
