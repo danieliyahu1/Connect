@@ -1,6 +1,9 @@
-target/
 *.log
+
 .mvn/
+*.mvn/
+
 .idea/
 *.iml
+
 postman/
