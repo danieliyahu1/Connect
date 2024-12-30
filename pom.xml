@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.connect</groupId>
-  <artifactId>connect</artifactId>
+  <artifactId>First-SB-Web-App</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>connect</name>
