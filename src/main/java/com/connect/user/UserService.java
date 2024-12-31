@@ -5,6 +5,10 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Optional;
+
+import com.connect.exception.UserNotFoundException;
+
 
 @Service
 public class UserService {
@@ -27,11 +31,12 @@ public class UserService {
 
     public User getUserById(int id)
     {
-        if(!this.checkUserExisit(id))
+        Optional<User> optionalUser = this.getUsers().stream().filter(user -> user.getId() == id).findFirst();
+        if(optionalUser.isEmpty())
         {
-            this.userNotFoundError();
+            this.userNotFoundException();
         }
-        return this.getUsers().stream().filter(user -> user.getId() == id).findFirst().get();
+        return optionalUser.get();
     }
 
     public User addUser(User user)
@@ -45,7 +50,7 @@ public class UserService {
     public User editUser(User user, int id) throws InvocationTargetException, IllegalAccessException {
         if(!this.checkUserExisit(id))
         {
-            this.userNotFoundError();
+            this.userNotFoundException();
         }
 
         User prevUser = this.getUserById(id);
@@ -60,7 +65,7 @@ public class UserService {
     {
         if(!this.checkUserExisit(id))
         {
-            this.userNotFoundError();
+            this.userNotFoundException();
         }
         List<User> users = this.getUsers();
         User userToDelete = this.getUserById(id);
@@ -85,8 +90,8 @@ public class UserService {
         return !this.getUsers().stream().filter(user -> user.getId() == id).findFirst().isEmpty();
     }
 
-    private Error userNotFoundError()
+    private UserNotFoundException userNotFoundException()
     {
-        throw new Error("User not found");
+        throw new UserNotFoundException("User not found, can not get user");
     }
 }
