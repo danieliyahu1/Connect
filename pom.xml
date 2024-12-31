@@ -11,10 +11,10 @@
   </parent>
 
   <groupId>com.connect</groupId>
-  <artifactId>connect</artifactId>
+  <artifactId>first-SB-web-app</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>connect</name>
+  <name>first-SB-web-app</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
