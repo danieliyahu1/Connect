@@ -1,10 +1,12 @@
 package com.connect.user;
 
+import com.connect.exception.UserNotFoundException;
 import org.apache.commons.beanutils.BeanUtils;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,7 +33,12 @@ public class UserService {
         {
             this.userNotFoundError();
         }
-        return this.getUsers().stream().filter(user -> user.getId() == id).findFirst().get();
+        Optional<User> optionalUser = this.getUsers().stream().filter(user -> user.getId() == id).findFirst();
+        if(optionalUser.isEmpty())
+        {
+            this.userNotFoundError();
+        }
+        return optionalUser.get();
     }
 
     public User addUser(User user)
@@ -87,6 +94,6 @@ public class UserService {
 
     private Error userNotFoundError()
     {
-        throw new Error("User not found");
+        throw new UserNotFoundException("User not found, can not delete user");
     }
 }

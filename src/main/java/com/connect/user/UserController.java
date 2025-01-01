@@ -30,7 +30,7 @@ public class UserController {
         try{
             return userService.getUserById(id);
         }
-        catch(Error e)
+        catch(Exception e)
         {
             throw new UserNotFoundException("User not found, can not get user");
         }
@@ -47,7 +47,7 @@ public class UserController {
         try{
             return userService.editUser(user, id);
         }
-        catch(Error e)
+        catch(Exception e)
         {
             throw new UserNotFoundException("User not found, can not edit user");
         }
@@ -59,7 +59,7 @@ public class UserController {
         try{
             return userService.deleteUser(id);
         }
-        catch(Error e)
+        catch(Exception e)
         {
             throw new UserNotFoundException("User not found, can not delete user");
         }
